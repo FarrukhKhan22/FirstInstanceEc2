@@ -10,3 +10,24 @@ resource "aws_instance" "FirstVm" {
     }
   
 }
+
+terraform {
+  required_providers{
+      random={
+          source="hashicorp/random"
+          version="3.0.1"
+      }
+  }
+
+  required_version = "~>1.0.1"
+  backend "remote" {
+      hostname = "app.terraform.io"
+      organization = "CloudCheethass"
+
+      workspaces {
+        name="FirstInstanceEc2"
+      }
+    
+  }
+
+}
